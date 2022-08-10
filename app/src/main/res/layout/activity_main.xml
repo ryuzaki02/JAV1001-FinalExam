@@ -96,7 +96,7 @@
     <!--Button to roll the dice and find the random value-->
     <Button
         android:id="@+id/idRollMeButton"
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="Roll Me"
         android:layout_marginTop="50dp"
@@ -114,6 +114,18 @@
         android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/idRollMeButton"/>
+
+    <!--Text view to show No Data available if list is empty-->
+    <TextView
+        android:id="@+id/idNoDataTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Data Available"
+        android:textSize="15sp"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idHistoryTextView"/>
 
     <!--List view to show history of all the dices and their values-->
     <ListView

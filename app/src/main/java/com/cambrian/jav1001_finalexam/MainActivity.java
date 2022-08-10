@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView currentValueTextView, previousValueTextView;
+    private TextView currentValueTextView, previousValueTextView, noDataTextView;
     private Button rollButton;
     private Spinner diceSpinner;
     private DiceViewModel viewModel;
@@ -84,10 +84,12 @@ public class MainActivity extends AppCompatActivity {
         currentValueTextView = findViewById(R.id.idCurrentValueTextView);
         previousValueTextView = findViewById(R.id.idPreviousValueTextView);
         historyListView = findViewById(R.id.idHistoryListView);
+        noDataTextView = findViewById(R.id.idNoDataTextView);
 
         setupSpinnerAdapter();
         setupListeners();
         setupHistoryListView();
+        setupNoDataView();
     }
 
     /**
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupHistoryListView() {
         ArrayAdapter<String> arr = new ArrayAdapter<String>(this, R.layout.history_list_view_item, R.id.idHistoryListViewTextView, viewModel.previousRounds);
         historyListView.setAdapter(arr);
+        setupNoDataView();
     }
 
     /**
@@ -155,6 +158,17 @@ public class MainActivity extends AppCompatActivity {
                 setupHistoryListView();
             }
         });
+    }
+
+    /**
+     * Shows no data available if list of history is empty
+     * @params: nothing
+     * @return: nothing
+     */
+    private void setupNoDataView() {
+        final boolean show = (viewModel.previousRounds != null && viewModel.previousRounds.toArray().length != 0);
+        noDataTextView.setVisibility(show ? View.GONE : View.VISIBLE);
+        historyListView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     /**
